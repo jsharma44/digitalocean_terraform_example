@@ -15,8 +15,46 @@ Heres is the scenario we want to create a project if not exists and for some dat
 
 1. first clone this repository or download it
 2. cd to repository and edit in vscode or any editor
-3. adjust your configuration in terraform.tfvars
-4. open terminal in current directory and run following commands
+3. adjust your configuration in [terraform.tfvars](./terraform.tfvars)
+4. You can check default configuration in [variables.tf](./variables.tf). Following is a basic example
+
+```bash
+do_token     = "dop_vXXXXXXXXXXXXXXXXX"
+project_name = "My Project"
+
+# Droplets
+droplet_name_prefix = "droplet"
+droplet_size        = "s-1vcpu-1gb"
+regions             = ["blr1", "ams3", "nyc3"]
+droplet_image       = "ubuntu-24-04-x64"
+droplet_tags        = ["cloud", "api", "docs"]
+
+# Manged Database Clusters
+database_clusters = [{
+  name    = "postgres"
+  engine  = "pg"
+  version = "16"
+  size    = "db-s-1vcpu-1gb"
+  count   = 1
+  },
+  {
+    name    = "redis"
+    engine  = "redis"
+    version = "7"
+    size    = "db-s-1vcpu-1gb"
+    count   = 1
+  }
+]
+
+# Notifications
+email         = "you@example.com"
+slack_webhook = "https://hooks.slack.com/services/xxxx/xxxx/xxxx"
+
+
+
+```
+
+5. open terminal in current directory and run following commands
 
 ```bash
 
